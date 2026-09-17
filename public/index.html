@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مولّد نصوص AI للشركات | أداة مجانية</title>
+    <meta name="description" content="أنشئ نصوص موظف استقبال بالذكاء الاصطناعي لشركتك مجانًا. مخصص لـ HVAC، سباكة، عيادات، ومزيد.">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #0a0a0f; color: #e8e8f0; line-height: 1.6; }
+        .container { max-width: 800px; margin: 0 auto; padding: 40px 20px; }
+        .hero { text-align: center; padding: 40px 0; }
+        .hero h1 { font-size: 2.2em; background: linear-gradient(135deg, #00d4aa, #00a8e8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 12px; }
+        .hero p { color: #a0a0b8; font-size: 1.1em; max-width: 500px; margin: 0 auto 24px; }
+        .tool { background: #12121a; border: 1px solid #1e1e2e; border-radius: 16px; padding: 32px; margin: 32px 0; }
+        .form-group { margin-bottom: 18px; }
+        .form-group label { display: block; color: #a0a0b8; margin-bottom: 6px; font-size: 0.95em; }
+        .form-group input, .form-group select, .form-group textarea { width: 100%; background: #1a1a28; border: 1px solid #2a2a3a; color: #fff; padding: 14px; border-radius: 8px; font-size: 1em; outline: none; }
+        .form-group textarea { min-height: 80px; resize: vertical; }
+        .btn { display: inline-block; background: linear-gradient(135deg, #00d4aa, #00a8e8); color: #000; padding: 14px 32px; border-radius: 8px; text-decoration: none; font-weight: 700; font-size: 1em; margin: 8px; cursor: pointer; border: none; }
+        .output { display: none; margin-top: 30px; background: #1a1a28; border-radius: 12px; padding: 24px; border: 1px solid #2a2a3a; }
+        .output.active { display: block; }
+        .output h3 { color: #00d4aa; margin-bottom: 12px; }
+        .output pre { white-space: pre-wrap; color: #c0c0d0; font-family: inherit; line-height: 1.8; }
+        .copy-btn { margin-top: 16px; }
+        .tips { margin-top: 12px; padding: 16px; background: #0d2818; border-radius: 8px; }
+        .tips h4 { color: #00d4aa; margin-bottom: 8px; font-size: 0.9em; }
+        .tips ul { color: #a0a0b8; font-size: 0.85em; padding-right: 20px; }
+        footer { text-align: center; padding: 30px; color: #666; font-size: 0.85em; }
+        @media (max-width: 600px) {
+            .hero h1 { font-size: 1.8em; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="hero">
+            <h1>🤖 مولّد نصوص AI للشركات</h1>
+            <p>أنشئ نصوص موظف استقبال بالذكاء الاصطناعي لشركتك. مخصص لنوع نشاطك. مجاني.</p>
+        </div>
+
+        <div class="tool">
+            <h2 style="text-align: center; margin-bottom: 24px;">أنشئ نصوصك الآن</h2>
+            <form id="scriptForm">
+                <div class="form-group">
+                    <label>اسم الشركة</label>
+                    <input type="text" id="bizName" placeholder="مثال: شركة تكييف فينيكس" required>
+                </div>
+                <div class="form-group">
+                    <label>نوع النشاط</label>
+                    <select id="bizType">
+                        <option value="hvac">تكييف وتبريد (HVAC)</option>
+                        <option value="plumbing">سباكة</option>
+                        <option value="dental">عيادة أسنان</option>
+                        <option value="clinic">عيادة طبية</option>
+                        <option value="roofing">سقفات</option>
+                        <option value="electrical">كهرباء</option>
+                        <option value="law">مكتب محاماة</option>
+                        <option value="realestate">عقارات</option>
+                        <option value="restaurant">مطعم</option>
+                        <option value="salon">صالون تجميل</option>
+                        <option value="gym">نادي رياضي</option>
+                        <option value="other">أخرى</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>اللهجة المطلوبة</label>
+                    <select id="dialect">
+                        <option value="msa">فصحى</option>
+                        <option value="saudi">سعودية</option>
+                        <option value="egyptian">مصرية</option>
+                        <option value="emirati">إماراتية</option>
+                        <option value="levantine">شامية</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn" style="width:100%;">توليد النصوص</button>
+            </form>
+
+            <div class="output" id="output">
+                <h3>📝 النصوص المولّدة</h3>
+                <pre id="scriptOutput"></pre>
+                <button class="btn copy-btn" onclick="copyScript()">📋 نسخ النص</button>
+                
+                <div class="tips">
+                    <h4>💡 نصائح للاستخدام:</h4>
+                    <ul>
+                        <li>أضف اسم شركتك في بداية الرسالة</li>
+                        <li>خصص الأسئلة حسب خدماتك الفعلية</li>
+                        <li>اختبر النص عدة مرات قبل استخدامه فعليًا</li>
+                        <li>حدّث الأسئلة الشائعة كل شهر</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>© 2026 — أداة مجانية</p>
+        </footer>
+    </div>
+
+    <script>
+        const scripts = {
+            hvac: {
+                greeting: "مرحبًا بك في {company}، خبراء التكييف والتبريد. أنا المساعد الذكي، كيف يمكنني مساعدتك اليوم؟",
+                questions: ["هل تحتاج إصلاح أم صيانة دورية؟", "ما نوع المكيف لديك؟", "هل المشكلة في التبريد أم التسريب؟", "ما هو عنوانك بالتفصيل؟", "هل تفضل موعدًا صباحيًا أم مساءً؟"],
+                closing: "شكرًا لتواصلك مع {company}! سيتم حجز موعدك وسيتواصل معك فريقنا خلال دقائق."
+            },
+            plumbing: {
+                greeting: "مرحبًا بك في {company}، خدمات السباكة الاحترافية. أنا المساعد الذكي، كيف يمكنني مساعدتك؟",
+                questions: ["هل لديك تسريب مياه؟", "هل المشكلة في الحمام أم المطبخ؟", "هل تفضل طوارئ أم موعد عادي؟", "ما هو عنوانك بالتفصيل؟"],
+                closing: "شكرًا لتواصلك مع {company}! تم حجز طلبك وسيتواصل معك فني السباكة قريبًا."
+            },
+            dental: {
+                greeting: "مرحبًا بك في {company}، عيادة الأسنان. أنا المساعد الذكي، كيف يمكنني مساعدتك؟",
+                questions: ["هل تريد حجز موعد فحص دوري؟", "هل لديك ألم في الأسنان؟", "هل مريض جديد أم متابعة؟", "هل لديك تأمين طبي؟"],
+                closing: "شكرًا لتواصلك مع {company}! تم حجز موعدك وسنرسل لك تأكيدًا بالرسائل النصية."
+            },
+            clinic: {
+                greeting: "مرحبًا بك في {company}، العيادة الطبية. أنا المساعد الذكي، كيف يمكنني مساعدتك؟",
+                questions: ["هل تريد حجز موعد مع طبيب عام؟", "هل لديك حالة طارئة؟", "هل لديك أعراض معينة؟", "هل لديك تأمين طبي؟"],
+                closing: "شكرًا لتواصلك مع {company}! تم حجز موعدك. يرجى الحضور قبل الموعد بـ 15 دقيقة."
+            },
+            roofing: {
+                greeting: "مرحبًا بك في {company}، خبراء السقفات. أنا المساعد الذكي، كيف يمكنني مساعدتك؟",
+                questions: ["هل لديك تسريب في السقف؟", "هل السقف مائل أم مسطح؟", "هل تريد فحصًا أم إصلاحًا؟", "ما هو عنوان العقار؟"],
+                closing: "شكرًا لتواصلك مع {company}! سيتم جدولة فحص السقف وسيتواصل معك فريقنا."
+            },
+            electrical: {
+                greeting: "مرحبًا بك في {company}، خدمات الكهرباء المنزلية. أنا المساعد الذكي، كيف يمكنني مساعدتك؟",
+                questions: ["هل لديك انقطاع في الكهرباء؟", "هل المشكلة في فيوز معين؟", "هل تريد إصلاحًا أم تركيبًا جديدًا؟", "ما هو عنوانك بالتفصيل؟"],
+                closing: "شكرًا لتواصلك مع {company}! تم حجز طلبك وسيتواصل معك فني الكهرباء قريبًا."
+            },
+            law: {
+                greeting: "مرحبًا بك في {company}، مكتب المحاماة. أنا المساعد الذكي، كيف يمكنني مساعدتك؟",
+                questions: ["هل تريد استشارة قانونية؟", "ما نوع القضية؟", "هل لديك موعد مع محامٍ مسبقًا؟", "ما هو رقم هاتفك للتواصل؟"],
+                closing: "شكرًا لتواصلك مع {company}! تم تسجيل طلبك وسيتواصل معك محامٍ متخصص."
+            },
+            realestate: {
+                greeting: "مرحبًا بك في {company}، الشركة العقارية. أنا المساعد الذكي، كيف يمكنني مساعدتك؟",
+                questions: ["هل تريد شراء، بيع، أم استئجار؟", "ما نوع العقار؟", "ما هي الميزانية التقريبية؟", "في أي منطقة تبحث؟"],
+                closing: "شكرًا لتواصلك مع {company}! سيقوم مستشار عقاري بالتواصل معك لتحديد استشارة مجانية."
+            },
+            restaurant: {
+                greeting: "مرحبًا بك في {company}، المطعم. أنا المساعد الذكي، كيف يمكنني مساعدتك؟",
+                questions: ["هل تريد حجز طاولة؟", "كم عدد الأشخاص؟", "هل لديك حساسية طعام معينة؟", "هل تفضل مكانًا داخليًا أم خارجيًا؟"],
+                closing: "شكرًا لحجزك في {company}! تم تأكيد حجزك. نراك قريبًا!"
+            },
+            salon: {
+                greeting: "مرحبًا بك في {company}، صالون التجميل. أنا المساعد الذكي، كيف يمكنني مساعدتك؟",
+                questions: ["هل تريد حجز موعد؟", "ما الخدمة التي تريدها؟", "هل لديك ستايلر مفضل؟", "ما هو الوقت المناسب لك؟"],
+                closing: "شكرًا لحجزك في {company}! تم تأكيد موعدك. نعتني بجمالك!"
+            },
+            gym: {
+                greeting: "مرحبًا بك في {company}، النادي الرياضي. أنا المساعد الذكي، كيف يمكنني مساعدتك؟",
+                questions: ["هل تريد اشتراكًا جديدًا؟", "هل تريد حصصًا تدريبية خاصة؟", "ما هدفك؟", "هل تريد تجربة مجانية أولاً؟"],
+                closing: "شكرًا لتواصلك مع {company}! سيتواصل معك مدرب شخصي لتحديد خطتك الرياضية."
+            },
+            other: {
+                greeting: "مرحبًا بك في {company}. أنا المساعد الذكي، كيف يمكنني مساعدتك اليوم؟",
+                questions: ["ما هي طبيعة طلبك؟", "هل تحتاج خدمة محددة؟", "ما هو عنوانك للتواصل؟", "هل تفضل موعدًا محددًا؟"],
+                closing: "شكرًا لتواصلك مع {company}! تم تسجيل طلبك وسيتواصل معك فريقنا قريبًا."
+            }
+        };
+
+        document.getElementById('scriptForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const bizName = document.getElementById('bizName').value.trim();
+            const bizType = document.getElementById('bizType').value;
+            const script = scripts[bizType];
+            
+            let output = "═══════════════════════════════════════\n";
+            output += "  نصوص موظف استقبال AI — " + bizName + "\n";
+            output += "═══════════════════════════════════════\n\n";
+            output += "📞 رسالة الترحيب:\n" + script.greeting.replace('{company}', bizName) + "\n\n";
+            output += "❓ أسئلة التأهيل:\n";
+            script.questions.forEach((q, i) => { output += (i+1) + ". " + q + "\n"; });
+            output += "\n✅ رسالة الإغلاق:\n" + script.closing.replace('{company}', bizName) + "\n";
+            
+            document.getElementById('scriptOutput').textContent = output;
+            document.getElementById('output').classList.add('active');
+        });
+
+        function copyScript() {
+            const text = document.getElementById('scriptOutput').textContent;
+            navigator.clipboard.writeText(text).then(() => { alert('تم النسخ!'); });
+        }
+    </script>
+</body>
+</html>
